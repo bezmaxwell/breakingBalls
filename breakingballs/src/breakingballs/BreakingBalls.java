@@ -2,6 +2,7 @@ package breakingballs;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +29,10 @@ public class BreakingBalls extends JPanel implements KeyListener, ActionListener
 	private int ballXdir = -1;
 	private int ballYdir = -2;
 	
+	private MapGenerator map;
 	
 	public BreakingBalls() {
+		map = new MapGenerator(3, 7);
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -45,6 +48,10 @@ public class BreakingBalls extends JPanel implements KeyListener, ActionListener
 		g.setColor(Color.black);
 		g.fillRect(1, 1, 692, 592);
 	
+		// drawing map
+		map.draw((Graphics2D)g);
+		
+		
 		// borders
 		g.setColor(Color.yellow);
 		g.fillRect(0, 0, 3, 592);
@@ -74,6 +81,15 @@ public class BreakingBalls extends JPanel implements KeyListener, ActionListener
 				// quando a bola entra em contato com o player
 				// volta com valor negativo
 				ballYdir = -ballYdir;
+				// Verificar quando a bola atinge o player no eixo X
+			}
+			
+			for(int i = 0; i< map.map.length; i++) {
+				for(int j = 0; j<map.map[0].length; j++) {
+					if(map.map[i][j] > 0) {
+						
+					}
+				}
 			}
 			
 			ballposX += ballXdir;
